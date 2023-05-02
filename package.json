@@ -2,7 +2,7 @@
   "name": "team-youtube",
   "private": true,
   "version": "1.0.0",
-  "author": "Michael Estany",
+  "author": "Michael Estany, Steve Butler",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
