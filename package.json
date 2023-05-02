@@ -2,7 +2,7 @@
   "name": "team-youtube",
   "private": true,
   "version": "1.0.0",
-  "author": "Michael Estany",
+  "author": "Steve Butler, Cameron Dorris, Mark Brewer, Michael Estany",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
