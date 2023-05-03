@@ -1,38 +1,60 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {
-  Navbar, Container, Nav, Button,
+  Navbar, Container, Nav, Button, Image,
 } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+import { signIn, signOut } from '../utils/auth';
 
-export default function NavBarAuth({ query, setQuery }) {
+export default function NavBarAuth({ query, setQuery, user }) {
+  const [menu, setMenu] = useState(false);
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="white">
+
+      <Link passHref href="/">
+        <Navbar.Brand>
+          <Image src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="logo" style={{ width: 100, marginTop: -7, marginLeft: 100 }} />
+        </Navbar.Brand>
+      </Link>
       <Container>
-        <Link passHref href="/">
-          <Navbar.Brand>Logo Here</Navbar.Brand>
-        </Link>
+        <div className="wrap">
+          <div className="search">
+            <input type="search" className="searchTerm me-2 rounded-pill" value={query} placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
+          </div>
+        </div>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-            <Link passHref href="/">
-              <Nav.Link>Home</Nav.Link>
-            </Link>
-            <div className="wrap">
-              <div className="search">
-                <input type="search" className="searchTerm me-2 rounded-pill" value={query} placeholder="search" onChange={(e) => setQuery(e.target.value)} />
-                <button type="submit" className="searchButton">
-                  <i className="fa fa-search" />
-                </button>
-              </div>
-            </div>
-            <Button variant="danger" onClick={signOut}>Sign Out</Button>
-          </Nav>
-        </Navbar.Collapse>
+        <Navbar.Collapse id="responsive-navbar-nav" />
       </Container>
+      {user ? (
+        <div id="Profile-logo">
+          <button type="button" id="drop-btn" onClick={() => setMenu((open) => !open)}>
+            <Image
+              id="Logo"
+              src={user.photoURL}
+              border-radius="250px"
+              height="42"
+              width="42"
+            />
+          </button>
+          {menu && (
+          <div className="dropdown">
+            <ul>
+              <Link passHref href="/profile">
+                <li>My Videos</li>
+              </Link>
+              <li><button type="button" id="drop-btn" onClick={signOut}> Sign Out</button></li>
+            </ul>
+          </div>
+          )}
+        </div>
+      )
+        : (
+          <Nav className="me-auto">
+            <Button variant="danger" onClick={signIn}>Sign In</Button>
+          </Nav>
+        )}
     </Navbar>
   );
 }
@@ -40,6 +62,9 @@ export default function NavBarAuth({ query, setQuery }) {
 NavBarAuth.propTypes = {
   query: PropTypes.string,
   setQuery: PropTypes.func,
+  user: PropTypes.shape({
+    photoURL: PropTypes.string,
+  }).isRequired,
 
 };
 
