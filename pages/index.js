@@ -24,8 +24,7 @@ function Home() {
         return (
           <VideoHome key={v4()} id={video.id} snippet={video.snippet} thumbnails={video.snippet.thumbnails} />
         );
-      })
-    }
+      })}
     </div>
   );
 }
