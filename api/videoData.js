@@ -1,7 +1,7 @@
 import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
-const ytUrl = 'https://youtube-v31.p.rapidapi.com';
+const ytUrl = 'https://youtube-v38.p.rapidapi.com';
 
 const getAllVideos = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json`, {
@@ -16,11 +16,11 @@ const getAllVideos = () => new Promise((resolve, reject) => {
 });
 
 const getYTVideos = () => new Promise((resolve, reject) => {
-  fetch(`${ytUrl}/search?q=reactjs&part=snippet&regionCode=US&maxResults=50`, {
+  fetch(`${ytUrl}/search/?q=cats&hl=en&gl=US`, {
     method: 'GET',
     headers: {
       'X-RapidAPI-Key': '9a8827260bmsh7799fe0c39c5d2ep1ea829jsn3c6ce85ec4ca',
-      'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
+      'X-RapidAPI-Host': 'youtube-v38.p.rapidapi.com',
     },
   })
     .then((response) => response.json())
