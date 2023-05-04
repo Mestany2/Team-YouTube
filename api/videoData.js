@@ -27,7 +27,7 @@ const getUserVideos = (uid) => new Promise((resolve, reject) => {
 });
 
 const uploadNewVideo = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/videos.json`, {
+  fetch('https://team-851f6-default-rtdb.firebaseio.com/videos.json', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const uploadNewVideo = (payload) => new Promise((resolve, reject) => {
 });
 
 const updateVideo = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/videos/${payload.firebaseKey}.json`, {
+  fetch(`https://team-851f6-default-rtdb.firebaseio.com/videos/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

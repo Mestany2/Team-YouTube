@@ -11,9 +11,7 @@ const clientCredentials = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
 };
-
 if (!firebase.apps.length) {
   firebase?.initializeApp(clientCredentials);
 }
-
 export { firebase, clientCredentials };
