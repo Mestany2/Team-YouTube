@@ -1,22 +1,31 @@
-// import { Button } from 'react-bootstrap'; // TODO: COMMENT IN FOR AUTH
-// import { signOut } from '../utils/auth'; // TODO: COMMENT IN FOR AUTH
-// import { useAuth } from '../utils/context/authContext'; // TODO: COMMENT IN FOR AUTH
+import { useState, useEffect } from 'react';
+import { v4 } from 'uuid';
+// import FilterComponent from '../components/FilterComponent';
+import { getYTVideos } from '../api/videoData';
+import VideoHome from '../components/VideoHome';
 
 function Home() {
-  // const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
+// const categories = ['Cats', 'Code', 'Music', 'Recently Uploaded'];
+  const [videos, setVideos] = useState([]);
 
-  const user = { displayName: 'Dr. Fady' }; // TODO: COMMENT OUT FOR AUTH
+  const getVideos = () => {
+    getYTVideos().then((data) => setVideos(data));
+  };
+  useEffect(() => {
+    getVideos();
+  }, []);
+  console.warn('VIDEOS: ', videos);
+
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.displayName}! </h1>
+    <div className="text-center d-flex flex-column justify-content-center align-content-center">
+      {/* {categories.map((category) => <FilterComponent categories={category} />)} */}
+      {videos.map((video) => {
+        console.warn(video.id);
+        return (
+          <VideoHome key={v4()} id={video.id} snippet={video.snippet} thumbnails={video.snippet.thumbnails} />
+        );
+      })
+    }
     </div>
   );
 }

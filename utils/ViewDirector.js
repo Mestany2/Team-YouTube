@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
-import Signin from '../components/Signin';
+// import Signin from '../components/Signin';
 import NavBarAuth from '../components/NavBarAuth';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
@@ -25,7 +25,14 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     );
   }
 
-  return <Signin />;
+  return (
+    <>
+      <NavBarAuth query={query} setQuery={setQuery} /> {/* NavBar only visible if user is logged in and is in every view */}
+      <div className="container">
+        <Component {...pageProps} query={query} />
+      </div>
+    </>
+  );
 };
 
 export default ViewDirectorBasedOnUserAuthStatus;
