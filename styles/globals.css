@@ -18,7 +18,7 @@ a {
 }
 
 body {
-  background-color:#f9f9f9;
+  background-color:white;
 }
 .searchButton {
   width: 40px;
@@ -55,7 +55,7 @@ body {
 }
 
 .searchTerm:focus{
-  color: #bebebe;
+  color: #777879;
 }
 
 #Profile-logo{
@@ -96,3 +96,4 @@ li:hover {
 #Logo{
   border-radius: 250px
 }
+

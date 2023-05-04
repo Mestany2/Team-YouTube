@@ -1,6 +1,4 @@
-import { clientCredentials } from '../utils/client';
-
-const dbUrl = clientCredentials.databaseURL;
+const dbUrl = 'https://team-851f6-default-rtdb.firebaseio.com';
 
 const getAllVideos = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json`, {
