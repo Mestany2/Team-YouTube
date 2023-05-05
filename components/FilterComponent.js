@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 
 const FilterComponent = ({ category }) => (
-  <Button>{category}</Button>
+  <Button variant="secondary" value={category}>{category}</Button>
 );
 
 export default FilterComponent;

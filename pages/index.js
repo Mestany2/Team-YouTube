@@ -18,11 +18,10 @@ function Home() {
   return (
     <>
       <div className="w-80 mx-auto">
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-around">
           {categories.map((category) => <FilterComponent key={v4()} category={category} />)}
         </div>
-
-        <div className="d-flex flex-wrap gap-3 ">
+        <div className="d-flex flex-wrap">
           {videos.map((item) => <VideoHome key={v4()} id={item.video.videoId} title={item.video.title} thumbnail={item.video.thumbnails[0].url} avatar={item.video.author.avatar[0].url} />)}
         </div>
       </div>
