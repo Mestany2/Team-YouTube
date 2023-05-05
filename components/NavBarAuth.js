@@ -6,10 +6,11 @@ import {
   Navbar, Container, Nav, Button, Image,
 } from 'react-bootstrap';
 import { signIn, signOut } from '../utils/auth';
+import { useAuth } from '../utils/context/authContext';
 
-export default function NavBarAuth({ query, setQuery, user }) {
+export default function NavBarAuth({ query, setQuery }) {
   const [menu, setMenu] = useState(false);
-
+  const { user } = useAuth();
   return (
     <Navbar collapseOnSelect expand="lg" bg="white">
 
@@ -62,10 +63,6 @@ export default function NavBarAuth({ query, setQuery, user }) {
 NavBarAuth.propTypes = {
   query: PropTypes.string,
   setQuery: PropTypes.func,
-  user: PropTypes.shape({
-    photoURL: PropTypes.string,
-  }).isRequired,
-
 };
 
 NavBarAuth.defaultProps = {
