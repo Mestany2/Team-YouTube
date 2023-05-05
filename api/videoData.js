@@ -1,10 +1,25 @@
+const ytUrl = 'https://youtube-v38.p.rapidapi.com';
 const dbUrl = 'https://team-851f6-default-rtdb.firebaseio.com';
+
 
 const getAllVideos = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
+const getYTVideos = (query) => new Promise((resolve, reject) => {
+  fetch(`${ytUrl}/search/?q=${query}&hl=en&gl=US`, {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '9a8827260bmsh7799fe0c39c5d2ep1ea829jsn3c6ce85ec4ca',
+      'X-RapidAPI-Host': 'youtube-v38.p.rapidapi.com',
     },
   })
     .then((response) => response.json())
@@ -68,4 +83,5 @@ export {
   uploadNewVideo,
   updateVideo,
   deleteVideo,
+  getYTVideos,
 };
