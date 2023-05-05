@@ -7,24 +7,19 @@ import VideoHome from '../components/VideoHome';
 function Home() {
 // const categories = ['Cats', 'Code', 'Music', 'Recently Uploaded'];
   const [videos, setVideos] = useState([]);
-
-  const getVideos = () => {
-    getYTVideos().then((data) => setVideos(data));
-  };
+  const query = 'coding';
   useEffect(() => {
-    getVideos();
+    getYTVideos(query).then((data) => {
+      const videoArray = data[0];
+      setVideos(videoArray);
+    });
   }, []);
-  console.warn('VIDEOS: ', videos);
 
   return (
-    <div className="text-center d-flex flex-column justify-content-center align-content-center">
+    <div className="d-flex flex-wrap gap-3 ">
       {/* {categories.map((category) => <FilterComponent categories={category} />)} */}
-      {videos.map((video) => {
-        console.warn(video.id);
-        return (
-          <VideoHome key={v4()} id={video.id} snippet={video.snippet} thumbnails={video.snippet.thumbnails} />
-        );
-      })}
+      {videos.map((item) => <VideoHome key={v4()} id={item.video.videoId} title={item.video.title} thumbnail={item.video.thumbnails[0].url} avatar={item.video.author.avatar[0].url} />)}
+
     </div>
   );
 }

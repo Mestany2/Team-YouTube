@@ -15,8 +15,8 @@ const getAllVideos = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getYTVideos = () => new Promise((resolve, reject) => {
-  fetch(`${ytUrl}/search/?q=cats&hl=en&gl=US`, {
+const getYTVideos = (query) => new Promise((resolve, reject) => {
+  fetch(`${ytUrl}/search/?q=${query}&hl=en&gl=US`, {
     method: 'GET',
     headers: {
       'X-RapidAPI-Key': '9a8827260bmsh7799fe0c39c5d2ep1ea829jsn3c6ce85ec4ca',
