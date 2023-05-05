@@ -6,8 +6,8 @@ import VideoHome from '../components/VideoHome';
 
 function Home() {
   const categories = ['Cats', 'Code', 'Music', 'Recently Uploaded'];
-  const query = 'bass guitar';
   const [videos, setVideos] = useState([]);
+  const query = 'coding';
   useEffect(() => {
     getYTVideos(query).then((data) => {
       const videoArray = data[0];
