@@ -21,6 +21,7 @@ function Home() {
       {videos.map((item) => <VideoHome key={v4()} id={item.video.videoId} title={item.video.title} thumbnail={item.video.thumbnails[0].url} avatar={item.video.author.avatar[0].url} />)}
 
     </div>
+
   );
 }
 
