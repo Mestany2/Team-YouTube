@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 const FilterComponent = ({ category }) => (
   <Button>{category}</Button>
@@ -9,5 +9,9 @@ const FilterComponent = ({ category }) => (
 export default FilterComponent;
 
 FilterComponent.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
+};
+
+FilterComponent.defaultProps = {
+  category: 'bass guitar',
 };
