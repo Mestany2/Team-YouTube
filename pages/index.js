@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 // import FilterComponent from '../components/FilterComponent';
 import { getYTVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
 
-function Home() {
+function Home({ query }) {
 // const categories = ['Cats', 'Code', 'Music', 'Recently Uploaded'];
   const [videos, setVideos] = useState([]);
-  const query = 'coding';
+  // const q = 'coding';
   useEffect(() => {
     getYTVideos(query).then((data) => {
       const videoArray = data[0];
@@ -24,5 +25,14 @@ function Home() {
 
   );
 }
+
+Home.propTypes = {
+  query: PropTypes.string,
+
+};
+
+Home.defaultProps = {
+  query: 'coding',
+};
 
 export default Home;
