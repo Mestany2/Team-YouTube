@@ -4,18 +4,18 @@ import Image from 'next/image';
 
 const VideoHome = ({ title, thumbnail, avatar }) => (
   <>
-    <div className="w-25">
-      <div className="d-flex flex-column gap-1">
-        <Image className="rounded-2 " src={thumbnail} width="300" height="120" />
-        <div className="d-flex flex-nowrap gap-2 ms-2 px-2">
-          <Image className="rounded-circle" src={avatar} width="30" height="30" />
-          <div className="p-2">
-            <h6 className="my-0 fw-semibold">{title} </h6>
-            {/* <p className="text-start">{id}</p> */}
-          </div>
+
+    <div>
+      <Image className="rounded-2 " src={thumbnail} width="300" height="250" />
+      <div className="d-flex flex-nowrap gap-2 ms-2 px-2">
+        <Image className="rounded-circle" src={avatar} width="30" height="30" />
+        <div className="p-2">
+          <h6 className="my-0 fw-semibold">{title} </h6>
+          {/* <p className="text-start">{id}</p> */}
         </div>
       </div>
     </div>
+
   </>
 );
 
