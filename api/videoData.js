@@ -38,6 +38,19 @@ const getYTVideos = (query) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleYTVideo = (videoId) => new Promise((resolve, reject) => {
+  fetch(`${ytUrl}/video/details/?id=${videoId}`, {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '9a8827260bmsh7799fe0c39c5d2ep1ea829jsn3c6ce85ec4ca',
+      'X-RapidAPI-Host': 'youtube-v38.p.rapidapi.com',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const getUserVideos = (uid) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
@@ -96,4 +109,5 @@ export {
   updateVideo,
   deleteVideo,
   getYTVideos,
+  getSingleYTVideo,
 };

@@ -19,7 +19,10 @@ function Home({ query, setQuery }) {
     });
   }, [query, setQuery]);
 
+  console.warn('logging', videos);
+
   return (
+
     <>
       <div className=" bg-info text-center d-flex flex-column justify-content-center align-content-center">
         <div className="p-2 d-flex justify-content-between ">
