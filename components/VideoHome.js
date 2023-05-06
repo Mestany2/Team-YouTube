@@ -12,20 +12,12 @@ const VideoHome = ({
   };
   return (
     <>
-      {/*
-      <Image className="rounded-2 m-2" src={thumbnail} width="300" height="250" />
-      <div className="d-flex wrap gap-3 ms-2 px-2">
-        <Image className="rounded-circle" src={avatar} width="30" height="30" />
-        <div className="p-2 bg-secondary">
-          <h6 className="my-0 fw-semibold">{title} </h6>
-        </div>
-      </div> */}
-
-      <Card style={{ width: '24rem', border: 'none' }}>
-        <Card.Img variant="top" src={thumbnail} width="300" height="225" />
+      <Card style={{ width: '30rem' }}>
+        <Card.Img className="rounded-3" variant="top" src={thumbnail} width="300" height="225" />
         <Card.Body className="card">
-          <Card.Title><Image className="rounded-circle" src={avatar} width="30" height="30" /> {title}</Card.Title>
-          <Card.Text> <p className="fs-4">{channel}</p>
+          <Card.Title><Image className="rounded-circle border-0" src={avatar} width="30" height="30" /> {title}</Card.Title>
+          <Card.Text>
+            <p className="fs-4">{channel}</p>
             <p>{shortNum(views)} &bull; {publishedTime}</p>
           </Card.Text>
         </Card.Body>
