@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
-import { signOut } from '../utils/auth';
 
-export default function ProfileCard() {
+export default function ProfileCard({ count }) {
   const { user } = useAuth();
 
   return (
@@ -18,13 +18,20 @@ export default function ProfileCard() {
           border: 'none',
         }}
       >
-        <Card.Img style={{ borderRadius: '100px', width: '195px' }} src={user.photoURL} alt="Profile" />
+        <Card.Img style={{ borderRadius: '100px', width: '170px' }} src={user.photoURL} alt="Profile" />
         <Card.Body>
-          <Card.Title style={{ color: 'black' }}>{user.displayName}</Card.Title>
-          <Card.Subtitle>Video Count</Card.Subtitle>
+          <Card.Title style={{ color: 'black', fontSize: '30px' }}>{user.displayName}</Card.Title>
+          <Card.Subtitle>{count} Videos</Card.Subtitle>
         </Card.Body>
-        <Button type="button" className="signOUT" onClick={signOut}>Sign Out</Button>
       </Card>
     </>
   );
 }
+
+ProfileCard.propTypes = {
+  count: PropTypes.number,
+};
+
+ProfileCard.defaultProps = {
+  count: 0,
+};

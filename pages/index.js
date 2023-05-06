@@ -6,25 +6,30 @@ import { getYTVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
 
 function Home({ query, setQuery }) {
-  const categories = ['Cats', 'kids', 'mandolin', 'guitar'];
+  const categories = ['Cats', 'Code', 'mandolin', 'guitar'];
   const [videos, setVideos] = useState([]);
-  console.warn('QUERY: ', query);
 
   useEffect(() => {
+    if (query === '') {
+      setQuery('Reactjs');
+    }
     getYTVideos(query).then((data) => {
       const videoArray = data[0];
       setVideos(videoArray);
     });
-  }, [query]);
+  }, [query, setQuery]);
+
+  console.warn('logging', videos);
 
   return (
+
     <>
-      <div className="w-80 mx-auto">
-        <div className="d-flex gap-5 justfy-content-center">
+      <div className=" bg-info text-center d-flex flex-column justify-content-center align-content-center">
+        <div className="p-2 d-flex justify-content-between ">
           {categories.map((category) => <FilterComponent key={v4()} category={category} setQuery={setQuery} />)}
         </div>
-        <div className="d-flex flex-wrap">
-          {videos.map((item) => <VideoHome key={v4()} id={item.video.videoId} title={item.video.title} thumbnail={item.video.thumbnails[0].url} avatar={item.video.author.avatar[0].url} />)}
+        <div className="d-flex flex-wrap gap-4">
+          {videos.map((item) => item.type === 'video' && <VideoHome key={v4()} id={item.video.videoId} title={item.video.title} thumbnail={item.video.thumbnails[0].url} avatar={item.video.author.avatar[0].url} views={item.video.stats.views} channel={item.video.author.title} publishedTime={item.video.publishedTimeText} />)}
         </div>
       </div>
     </>

@@ -16,7 +16,9 @@ const initialState = {
   thumbnail: '',
 };
 
-export default function VideoForm({ obj }) {
+export default function VideoForm({
+  obj, buttonText, bc, colorSet, borderSet, fontSet, onUpdate,
+}) {
   const [show, setShow] = useState(false);
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
@@ -44,19 +46,21 @@ export default function VideoForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateVideo(formInput).then(handleClose);
+      updateVideo(formInput).then(() => {
+        onUpdate();
+        handleClose();
+      });
     } else {
       const payload = {
-        ...formInput, uid: user.uid, likes: 0, upload_date: new Date(Date.now()),
+        ...formInput, uid: user.uid, likes: 0, upload_date: new Date(Date.now()), userName: user.displayName, user_photo: user.photoURL,
       };
-      console.warn(payload);
       uploadNewVideo(payload).then(({ name }) => {
-        console.warn(name);
         const patchPayload = { firebaseKey: name };
-        console.warn(patchPayload);
         updateVideo(patchPayload).then(() => {
           router.push('/profile');
+          onUpdate();
           setShow(false);
+          setFormInput(initialState);
         });
       });
     }
@@ -64,18 +68,26 @@ export default function VideoForm({ obj }) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Upload New Video
+      <Button
+        variant="primary"
+        className="modalForm"
+        onClick={handleShow}
+        style={{
+          backgroundColor: bc,
+          color: colorSet,
+          border: borderSet,
+          fontSize: fontSet,
+        }}
+      >
+        {buttonText}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>New Video</Modal.Title>
+          <Modal.Title>{obj.firebaseKey ? 'Update' : 'Upload'} Video</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Upload'} Video</h2>
-
             {/* Video Title  */}
             <FloatingLabel controlId="floatingInput1" label="Video Title" className="mb-3" style={{ color: 'red' }}>
               <Form.Control
@@ -136,7 +148,7 @@ export default function VideoForm({ obj }) {
               />
             </FloatingLabel>
 
-            <Button type="submit">{obj.firebaseKey ? 'Update' : 'Upload'} Video</Button>
+            <Button type="submit">{obj.firebaseKey ? 'Update' : 'Submit'}</Button>
           </Form>
         </Modal.Body>
         <Modal.Footer />
@@ -153,9 +165,22 @@ VideoForm.propTypes = {
     category: PropTypes.string,
     thumbnail: PropTypes.string,
     firebaseKey: PropTypes.string,
+    user_photo: PropTypes.string,
+    userName: PropTypes.string,
   }),
+  buttonText: PropTypes.string.isRequired,
+  bc: PropTypes.string,
+  colorSet: PropTypes.string,
+  borderSet: PropTypes.string,
+  fontSet: PropTypes.string,
+  onUpdate: PropTypes.func,
 };
 
 VideoForm.defaultProps = {
   obj: initialState,
+  bc: '#2873eb',
+  colorSet: 'white',
+  borderSet: 'none',
+  fontSet: '16px',
+  onUpdate: null,
 };
