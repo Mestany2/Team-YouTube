@@ -52,7 +52,7 @@ export default function VideoForm({
       });
     } else {
       const payload = {
-        ...formInput, uid: user.uid, likes: 0, upload_date: new Date(Date.now()),
+        ...formInput, uid: user.uid, likes: 0, upload_date: new Date(Date.now()), userName: user.displayName, user_photo: user.photoURL,
       };
       uploadNewVideo(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
@@ -165,6 +165,8 @@ VideoForm.propTypes = {
     category: PropTypes.string,
     thumbnail: PropTypes.string,
     firebaseKey: PropTypes.string,
+    user_photo: PropTypes.string,
+    userName: PropTypes.string,
   }),
   buttonText: PropTypes.string.isRequired,
   bc: PropTypes.string,
