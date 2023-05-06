@@ -29,13 +29,13 @@ export default function NavBarAuth({ query, setQuery, user }) {
       </Container>
       {user ? (
         <div id="Profile-logo">
-          <button type="button" id="drop-btn" onClick={() => setMenu((open) => !open)}>
+          <button type="button" id="drop-btn" style={{ marginRight: '25px' }} onClick={() => setMenu((open) => !open)}>
             <Image
               id="Logo"
               src={user.photoURL}
               border-radius="250px"
-              height="42"
-              width="42"
+              height="37"
+              width="37"
             />
           </button>
           {menu && (

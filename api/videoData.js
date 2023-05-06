@@ -1,9 +1,20 @@
 const ytUrl = 'https://youtube-v38.p.rapidapi.com';
 const dbUrl = 'https://team-851f6-default-rtdb.firebaseio.com';
 
-
 const getAllVideos = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
+const getSingleVideo = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/videos/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -79,6 +90,7 @@ const deleteVideo = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getAllVideos,
+  getSingleVideo,
   getUserVideos,
   uploadNewVideo,
   updateVideo,
