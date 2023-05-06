@@ -15,10 +15,12 @@ function Home() {
     });
   }, []);
 
+  console.warn('logging', videos);
+
   return (
     <div className="d-flex flex-wrap gap-3 ">
       {/* {categories.map((category) => <FilterComponent categories={category} />)} */}
-      {videos.map((item) => <VideoHome key={v4()} id={item.video.videoId} title={item.video.title} thumbnail={item.video.thumbnails[0].url} avatar={item.video.author.avatar[0].url} />)}
+      {videos.map((item) => <VideoHome key={v4()} id={item.video.videoId || item.channel.channelId} title={item.video.title} thumbnail={item.video.thumbnails[0].url} avatar={item.video.author.avatar[0].url} />)}
 
     </div>
 
