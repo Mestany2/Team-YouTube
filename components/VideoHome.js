@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+
 import Card from 'react-bootstrap/Card';
 // eslint-disable-next-line import/no-extraneous-dependencies
 
@@ -30,7 +31,7 @@ const VideoHome = ({
 export default VideoHome;
 
 VideoHome.propTypes = {
-  // id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
