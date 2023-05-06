@@ -14,6 +14,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     getAllTheVideos();
+    console.warn(`user photo url ${user.photoURL}`);
   }, []);
 
   const videoCount = videos.length;
@@ -24,7 +25,7 @@ export default function ProfilePage() {
         <ProfileCard count={videoCount} />
       </div>
       <div className="d-flex flex-column">
-        <div className="mb-2 d-flex justify-content-around">
+        <div className="mb-2 d-flex justify-content-between w-50">
           <h4 style={{ fontWeight: '500' }}>Uploads</h4>
           <VideoForm buttonText="Add a Video" bc="white" colorSet="black" fontSet="22px" onUpdate={getAllTheVideos} />
         </div>
