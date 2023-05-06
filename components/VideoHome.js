@@ -21,7 +21,6 @@ const VideoHome = ({
           <h6 className="my-0 fw-semibold">{title} </h6>
         </div>
       </div> */}
-
       <Card style={{ width: '24rem', border: 'none' }}>
         <Link href={`/${id}`} passHref>
           <Image className="rounded-2 " src={thumbnail} width="300" height="120" />
@@ -33,7 +32,6 @@ const VideoHome = ({
           </Card.Text>
         </Card.Body>
       </Card>
-
     </>
   );
 };

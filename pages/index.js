@@ -6,7 +6,7 @@ import { getYTVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
 
 function Home({ query, setQuery }) {
-  const categories = ['Cats', 'Code', 'mandolin', 'guitar'];
+  const categories = ['Reatjs', 'Javascript', 'Mandolin', 'Guitar', 'CSS', 'Fishing'];
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
