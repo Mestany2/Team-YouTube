@@ -13,6 +13,18 @@ const getAllVideos = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleVideo = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/videos/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 const getYTVideos = (query) => new Promise((resolve, reject) => {
   fetch(`${ytUrl}/search/?q=${query}&hl=en&gl=US`, {
     method: 'GET',
@@ -91,6 +103,7 @@ const deleteVideo = (firebaseKey) => new Promise((resolve, reject) => {
 
 export {
   getAllVideos,
+  getSingleVideo,
   getUserVideos,
   uploadNewVideo,
   updateVideo,
