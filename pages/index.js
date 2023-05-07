@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 import FilterComponent from '../components/FilterComponent';
-import { getYTVideos } from '../api/videoData';
+import { getAllVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
 import Sidebar from '../components/Sidebar';
 import { filterCategories } from '../utils/data/categories';
@@ -15,13 +16,11 @@ function Home({ query, setQuery }) {
     if (query === '') {
       setQuery('Reactjs');
     }
-    getYTVideos(query).then((data) => {
-      const videoArray = data[0];
+    getAllVideos().then((data) => {
+      const videoArray = data;
       setVideos(videoArray);
     });
-  }, [query, setQuery]);
-
-  console.warn('logging', videos);
+  }, []);
 
   return (
 
