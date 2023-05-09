@@ -1,35 +1,42 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 import FilterComponent from '../components/FilterComponent';
-import { getYTVideos } from '../api/videoData';
+import { getAllVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
+// import Sidebar from '../components/Sidebar';
+import { filterCategories } from '../utils/data/categories';
 
 function Home({ query, setQuery }) {
-  const categories = ['Reatjs', 'Javascript', 'Mandolin', 'Guitar', 'CSS', 'Fishing'];
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     if (query === '') {
       setQuery('Reactjs');
     }
-    getYTVideos(query).then((data) => {
-      const videoArray = data[0];
+    getAllVideos(query).then((data) => {
+      const videoArray = data;
+      console.warn('videoARRAY: ', videoArray);
       setVideos(videoArray);
     });
-  }, [query, setQuery]);
+  }, [query]);
 
-  console.warn('logging', videos);
-
+  console.warn('Videos: ', videos);
   return (
 
     <>
-      <div className=" bg-info text-center d-flex flex-column justify-content-center align-content-center">
-        <div className="p-2 d-flex justify-content-between ">
-          {categories.map((category) => <FilterComponent key={v4()} category={category} setQuery={setQuery} />)}
+      <div className="d-flex">
+        <div className="d-flex flex-column bg-warning gap-4 me-4 mt-40">
+          {/* <Sidebar key={v4()} setQuery={setQuery} /> */}
         </div>
-        <div className="d-flex flex-wrap gap-4">
-          {videos.map((item) => item.type === 'video' && <VideoHome key={v4()} id={item.video.videoId} title={item.video.title} thumbnail={item.video.thumbnails[0].url} avatar={item.video.author.avatar[0].url} views={item.video.stats.views} channel={item.video.author.title} publishedTime={item.video.publishedTimeText} />)}
+        <div className="text-center d-flex flex-column justify-content-center align-content-center">
+          <div className="p-2 d-flex justify-content-around mt-3 mb-2 ">
+            {filterCategories.map((category) => <FilterComponent key={v4()} category={category} setQuery={setQuery} />)}
+          </div>
+          <div className="d-flex flex-wrap gap-3">
+            {videos.map((item) => <VideoHome key={v4()} id={item.videoId} title={item.title} thumbnail={item.video_thumbnail} avatar={item.user_photo} />)}
+          </div>
         </div>
       </div>
     </>

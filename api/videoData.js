@@ -1,6 +1,5 @@
-import { clientCredentials } from '../utils/client';
+// const ytUrl = 'https://youtube-v38.p.rapidapi.com';
 
-const ytUrl = 'https://youtube-v38.p.rapidapi.com';
 const dbUrl = 'https://team-851f6-default-rtdb.firebaseio.com';
 const ytKey = clientCredentials.youtubeKey;
 
@@ -8,6 +7,18 @@ console.warn('My key', ytKey);
 
 const getAllVideos = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
+const getFilteredVideos = (query) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/videos.json/?orderBy="category"&contains="${query}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -30,31 +41,6 @@ const getSingleVideo = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getYTVideos = (query) => new Promise((resolve, reject) => {
-  fetch(`${ytUrl}/search/?q=${query}&hl=en&gl=US`, {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': ytKey,
-      'X-RapidAPI-Host': 'youtube-v38.p.rapidapi.com',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
-    .catch(reject);
-});
-
-const getSingleYTVideo = (videoId) => new Promise((resolve, reject) => {
-  fetch(`${ytUrl}/video/details/?id=${videoId}`, {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': ytKey,
-      'X-RapidAPI-Host': 'youtube-v38.p.rapidapi.com',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
-});
 
 const getUserVideos = (uid) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json?orderBy="uid"&equalTo="${uid}"`, {
@@ -113,6 +99,7 @@ export {
   uploadNewVideo,
   updateVideo,
   deleteVideo,
-  getYTVideos,
-  getSingleYTVideo,
+  getFilteredVideos,
+  // getYTVideos,
+  // getSingleYTVideo,
 };
