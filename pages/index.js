@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 import FilterComponent from '../components/FilterComponent';
-import { getAllVideos } from '../api/videoData';
+import { getAllVideos, getFilteredVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
 // import Sidebar from '../components/Sidebar';
 import { filterCategories } from '../utils/data/categories';
@@ -11,18 +11,32 @@ import { filterCategories } from '../utils/data/categories';
 function Home({ query, setQuery }) {
   const [videos, setVideos] = useState([]);
 
-  useEffect(() => {
-    if (query === '') {
-      setQuery('Reactjs');
-    }
-    getAllVideos(query).then((data) => {
+  const unfilteredVideos = () => {
+    getAllVideos().then((data) => {
       const videoArray = data;
-      console.warn('videoARRAY: ', videoArray);
       setVideos(videoArray);
     });
+  };
+
+  useEffect(() => {
+    if (query != null) {
+      getAllVideos().then((data) => {
+        const videoArray = data;
+        setVideos(videoArray);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (query != null) {
+      getFilteredVideos(query).then((data) => {
+        const videoArray = data;
+        console.warn('Query: ', query);
+        setVideos(videoArray);
+      });
+    }
   }, [query]);
 
-  console.warn('Videos: ', videos);
   return (
 
     <>
@@ -32,10 +46,10 @@ function Home({ query, setQuery }) {
         </div>
         <div className="text-center d-flex flex-column justify-content-center align-content-center">
           <div className="p-2 d-flex justify-content-around mt-3 mb-2 ">
-            {filterCategories.map((category) => <FilterComponent key={v4()} category={category} setQuery={setQuery} />)}
+            {filterCategories.map((category) => <FilterComponent key={v4()} category={category} setQuery={setQuery} unfilteredVideos={unfilteredVideos} />)}
           </div>
-          <div className="d-flex flex-wrap gap-3">
-            {videos.map((item) => <VideoHome key={v4()} firebaseKey={item.firebaseKey} id={item.video_id} title={item.title} thumbnail={item.video_thumbnail} avatar={item.user_photo} />)}
+          <div className="d-flex flex-wrap gap-3 w-75">
+            {videos.map((item) => <VideoHome key={v4()} id={item.video_id} title={item.title} thumbnail={item.video_thumbnail} avatar={item.user_photo} />)}
           </div>
         </div>
       </div>

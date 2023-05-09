@@ -1,5 +1,3 @@
-// const ytUrl = 'https://youtube-v38.p.rapidapi.com';
-
 const dbUrl = 'https://team-851f6-default-rtdb.firebaseio.com';
 
 const getAllVideos = () => new Promise((resolve, reject) => {
@@ -15,7 +13,7 @@ const getAllVideos = () => new Promise((resolve, reject) => {
 });
 
 const getFilteredVideos = (query) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/videos.json/?orderBy="category"&contains="${query}"`, {
+  fetch(`${dbUrl}/videos.json/?orderBy="category"&equalTo="${query}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

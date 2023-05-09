@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
+// import { getAllVideos } from '../api/videoData';
 
-const FilterComponent = ({ category, setQuery }) => {
+const FilterComponent = ({ category, setQuery, unfilteredVideos }) => {
   const [activeState, setActiveState] = useState(false);
 
   const handleButtonState = (e) => {
     if (e.target.value === 'ALL') {
-      setQuery('');
+      unfilteredVideos();
     } else {
-      setQuery(e.target.value.toLowerCase());
+      setQuery(e.target.value);
     }
-    setActiveState(true);
+    setActiveState(!true);
   };
   return (
     <>
@@ -26,11 +27,7 @@ const FilterComponent = ({ category, setQuery }) => {
 export default FilterComponent;
 
 FilterComponent.propTypes = {
-  category: PropTypes.string,
+  category: PropTypes.string.isRequired,
   setQuery: PropTypes.func.isRequired,
-};
-
-FilterComponent.defaultProps = {
-  category: 'bass guitar',
-
+  unfilteredVideos: PropTypes.func.isRequired,
 };
