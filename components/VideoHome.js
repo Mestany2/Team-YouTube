@@ -5,14 +5,14 @@ import Link from 'next/link';
 // eslint-disable-next-line import/no-extraneous-dependencies
 
 const VideoHome = ({
-  title, thumbnail, avatar, id,
+  title, thumbnail, avatar, id, firebaseKey,
 }) => (
   <>
     <div>
       <div className="video">
         <div>
-          <Link href={`/${id}`} passHref>
-            <Image className="thumbnail rounded-4 " src={thumbnail} width="375" height="225" />
+          <Link href={`/${id}--${firebaseKey}`} passHref>
+            <Image className="rounded-4 " src={thumbnail} width="375" height="225" />
           </Link>
         </div>
         <div className="d-flex ps-4 pt-2">
@@ -37,5 +37,5 @@ VideoHome.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired,
-
+  firebaseKey: PropTypes.string.isRequired,
 };

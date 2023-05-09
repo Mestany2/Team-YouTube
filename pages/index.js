@@ -33,6 +33,7 @@ function Home({ query, setQuery }) {
       <div className="video-inside">
         <div className="video-container">
           {videos.map((item) => <VideoHome key={v4()} id={item.video_id} title={item.title} thumbnail={item.video_thumbnail} avatar={item.user_photo} />)}
+
         </div>
       </div>
     </>
