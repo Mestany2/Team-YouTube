@@ -100,12 +100,17 @@ li:hover {
 #Logo{
   border-radius: 250px
 }
+.outer-container{
+  margin-left: 200px;
+  margin-top: 100px;
+}
 .side-bar{
   position: fixed;
   top: 60px;
+  margin-top: 10px;
   left: 25px;
-  min-width: 250px;
-  width: 250px;
+  min-width: 150px;
+  width: 100px;
   height: calc(100vh - 60px);
   background: #fff;
   padding-right: 10px;
@@ -148,15 +153,12 @@ li:hover {
   display: grid;
   grid-template-columns: repeat(4, 25%);
   grid-gap: 20px 5px;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   position:relative;
   /* overflow:auto; */
   overflow-y:auto;
 }
-.video-inside{
-  position:relative;
-  border: 50px;
-}
+
 .filters{
   position: fixed;
   left: 250px;
@@ -213,8 +215,13 @@ li:hover {
 }
 #profile-card{
   margin-top:100px;
-  margin-left: 250px;
+  margin-left: 300px;
 }
 #profile-btn{
-  margin-left: 600px;
+  margin-left: 400px;
+ margin-top: 50px;
+}
+.profile-vid{
+  margin-top: 25px;
+  margin-left: 400px;
 }
