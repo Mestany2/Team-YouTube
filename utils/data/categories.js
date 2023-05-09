@@ -17,4 +17,4 @@ export const sidebarCategories = [
 
 ];
 
-export const filterCategories = ['ALL', 'Coding', 'Music', 'Boxing', '3D Printing'];
+export const filterCategories = ['ALL', 'Coding', 'Music', 'Boxing', '3D Printing', 'Gym', 'Gamming'];
