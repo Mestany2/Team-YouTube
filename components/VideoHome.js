@@ -9,10 +9,10 @@ const VideoHome = ({
 }) => (
   <>
     <div>
-      <div className="mb-3 " style={{ width: '24rem', border: 'none' }}>
+      <div className="video">
         <div>
           <Link href={`/${id}`} passHref>
-            <Image className="rounded-4 " src={thumbnail} width="375" height="225" />
+            <Image className="thumbnail rounded-4 " src={thumbnail} width="375" height="225" />
           </Link>
         </div>
         <div className="d-flex ps-4 pt-2">

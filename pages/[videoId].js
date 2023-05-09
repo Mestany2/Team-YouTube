@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { getSingleYTVideo } from '../api/videoData';
+import { getSingleVideo } from '../api/videoData';
 
 function Player() {
   const router = useRouter();
@@ -12,7 +12,7 @@ function Player() {
   console.warn('videoid:', videoId);
 
   useEffect(() => {
-    getSingleYTVideo(videoId).then((data) => (setVidObj(data)));
+    getSingleVideo(videoId).then((data) => (setVidObj(data)));
   }, [videoId]);
 
   console.warn('test', vidObj);

@@ -1,9 +1,6 @@
 // const ytUrl = 'https://youtube-v38.p.rapidapi.com';
 
 const dbUrl = 'https://team-851f6-default-rtdb.firebaseio.com';
-const ytKey = clientCredentials.youtubeKey;
-
-console.warn('My key', ytKey);
 
 const getAllVideos = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json`, {
@@ -40,7 +37,6 @@ const getSingleVideo = (firebaseKey) => new Promise((resolve, reject) => {
     .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });
-
 
 const getUserVideos = (uid) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/videos.json?orderBy="uid"&equalTo="${uid}"`, {

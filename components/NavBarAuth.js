@@ -13,35 +13,36 @@ export default function NavBarAuth({ query, setQuery }) {
   const { user } = useAuth();
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="white">
+    <div className="navbar">
+      <Navbar collapseOnSelect expand="lg" bg="white">
 
-      <Link passHref href="/">
-        <Navbar.Brand>
-          <Image src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="logo" style={{ width: 100, marginTop: -7, marginLeft: 100 }} />
-        </Navbar.Brand>
-      </Link>
-      <Container>
-        <div className="wrap">
-          <div className="search">
-            <input type="search" className="searchTerm me-2 rounded-pill" value={query} placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
+        <Link passHref href="/">
+          <Navbar.Brand>
+            <Image src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="logo" style={{ width: 100, marginTop: -7, marginLeft: 100 }} />
+          </Navbar.Brand>
+        </Link>
+        <Container>
+          <div className="wrap">
+            <div className="search">
+              <input type="search" className="searchTerm me-2 rounded-pill" value={query} placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
+            </div>
           </div>
-        </div>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav" />
-      </Container>
-      {user ? (
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav" />
+        </Container>
+        {user ? (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <div id="Profile-logo" role="button" tabIndex={0} onClick={() => { setOpen(!open); }}>
-          <button type="button" id="drop-btn" style={{ marginRight: '25px' }} onClick={() => setOpen((menu) => !menu)}>
-            <Image
-              id="Logo"
-              src={user.photoURL}
-              border-radius="250px"
-              height="37"
-              width="37"
-            />
-          </button>
-          {open && (
+          <div id="Profile-logo" role="button" tabIndex={0} onClick={() => { setOpen(!open); }}>
+            <button type="button" id="drop-btn" style={{ marginRight: '25px' }} onClick={() => setOpen((menu) => !menu)}>
+              <Image
+                id="Logo"
+                src={user.photoURL}
+                border-radius="250px"
+                height="37"
+                width="37"
+              />
+            </button>
+            {open && (
             <div className="dropdown">
               <ul>
                 <Link passHref href="/">
@@ -53,15 +54,16 @@ export default function NavBarAuth({ query, setQuery }) {
                 <li><button type="button" id="drop-btn" onClick={signOut}> Sign Out</button></li>
               </ul>
             </div>
+            )}
+          </div>
+        )
+          : (
+            <Nav className="me-auto">
+              <Button variant="danger" onClick={signIn}>Sign In</Button>
+            </Nav>
           )}
-        </div>
-      )
-        : (
-          <Nav className="me-auto">
-            <Button variant="danger" onClick={signIn}>Sign In</Button>
-          </Nav>
-        )}
-    </Navbar>
+      </Navbar>
+    </div>
   );
 }
 
