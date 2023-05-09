@@ -35,7 +35,7 @@ function Home({ query, setQuery }) {
             {filterCategories.map((category) => <FilterComponent key={v4()} category={category} setQuery={setQuery} />)}
           </div>
           <div className="d-flex flex-wrap gap-3">
-            {videos.map((item) => <VideoHome key={v4()} id={item.videoId} title={item.title} thumbnail={item.video_thumbnail} avatar={item.user_photo} />)}
+            {videos.map((item) => <VideoHome key={v4()} firebaseKey={item.firebaseKey} id={item.video_id} title={item.title} thumbnail={item.video_thumbnail} avatar={item.user_photo} />)}
           </div>
         </div>
       </div>
