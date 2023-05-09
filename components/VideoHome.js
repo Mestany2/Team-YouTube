@@ -11,7 +11,7 @@ const VideoHome = ({
     <div>
       <div className="video">
         <div>
-          <Link href={`/${id}--${firebaseKey}`} passHref>
+          <Link passHref href={`/${id}--${firebaseKey}`}>
             <Image className="rounded-4 " src={thumbnail} width="375" height="225" />
           </Link>
         </div>
