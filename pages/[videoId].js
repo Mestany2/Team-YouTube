@@ -19,7 +19,6 @@ function Player() {
   }, [videoKey, firebaseKey]);
 
   const vidArrayLimit = allVidsArray.slice(0, 7);
-
   return (
     <>
       <SideBar />
@@ -29,10 +28,12 @@ function Player() {
 
           <div><h2>{vidObj?.title}</h2></div>
           <div className="d-flex flex-nowrap gap-2 ms-2 px-2">
-            <Image className="rounded-circle" src={vidObj?.user_photo} width="40" height="40" />
+            <div style={{ width: '150px', height: '40px' }}>
+              {vidObj.user_photo && (<Image className="rounded-circle" src={vidObj.user_photo} alt="image" width="75" height="75" />)}
+            </div>
             <div className="p-2">
               <h5 className="my-0 fw-semibold">{vidObj?.userName}</h5>
-              <p style={{ maxWidth: '810px' }}>{vidObj?.description}</p>
+              <p style={{ maxWidth: '500px' }}>{vidObj?.description}</p>
             </div>
           </div>
         </div>

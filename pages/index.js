@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 import FilterComponent from '../components/FilterComponent';
-import { getAllVideos, getFilteredVideos } from '../api/videoData';
+import { getAllVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
 import { filterCategories } from '../utils/data/categories';
 import SideBar from '../components/SideBar';
@@ -48,7 +48,7 @@ function Home({ query, setQuery }) {
       </div>
       <div className="video-inside">
         <div className="video-container">
-          {filteredVids?.map((item) => <VideoHome key={v4()} id={item?.video_id} title={item?.title} thumbnail={item?.video_thumbnail} avatar={item?.user_photo} />)}
+          {filteredVids?.map((item) => <VideoHome key={v4()} id={item?.video_id} title={item?.title} thumbnail={item?.video_thumbnail} avatar={item?.user_photo} firebaseKey={item?.firebaseKey} />)}
 
         </div>
       </div>
