@@ -18,9 +18,9 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return (
       <>
         <NavBarAuth query={query} setQuery={setQuery} user={user} /> {/* NavBar only visible if user is logged in and is in every view */}
-        <div className="mx-auto" style={{ width: '80%' }}>
-          <Component {...pageProps} query={query} setQuery={setQuery} />
-        </div>
+        {/* <div className="mx-auto" style={{ width: '100%' }}> */}
+        <Component {...pageProps} query={query} setQuery={setQuery} />
+        {/* </div> */}
       </>
     );
   }
