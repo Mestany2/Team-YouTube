@@ -9,7 +9,7 @@ const VideoHome = ({
 }) => (
   <>
     <div>
-      <div className="mb-3 " style={{ width: '24rem', border: 'none' }}>
+      <div className="video">
         <div>
           <Link href={`/${id}--${firebaseKey}`} passHref>
             <Image className="rounded-4 " src={thumbnail} width="375" height="225" />

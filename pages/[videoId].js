@@ -13,9 +13,11 @@ function Player() {
   const [videoKey, firebaseKey] = videoId.split('--');
 
   useEffect(() => {
+
     getSingleVideo(firebaseKey).then(setVidObj);
     getAllVideos().then(setAllVidsArray);
   }, [videoKey, firebaseKey]);
+
 
   const vidArrayLimit = allVidsArray.slice(0, 7);
 
