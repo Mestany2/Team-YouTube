@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {
@@ -9,8 +9,9 @@ import { signIn, signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 export default function NavBarAuth({ query, setQuery }) {
-  const [menu, setMenu] = useState(false);
+  const [open, setOpen] = useState(false);
   const { user } = useAuth();
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="white">
 
@@ -29,8 +30,9 @@ export default function NavBarAuth({ query, setQuery }) {
         <Navbar.Collapse id="responsive-navbar-nav" />
       </Container>
       {user ? (
-        <div id="Profile-logo">
-          <button type="button" id="drop-btn" style={{ marginRight: '25px' }} onClick={() => setMenu((open) => !open)}>
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+        <div id="Profile-logo" role="button" tabIndex={0} onClick={() => { setOpen(!open); }}>
+          <button type="button" id="drop-btn" style={{ marginRight: '25px' }} onClick={() => setOpen((menu) => !menu)}>
             <Image
               id="Logo"
               src={user.photoURL}
@@ -39,15 +41,18 @@ export default function NavBarAuth({ query, setQuery }) {
               width="37"
             />
           </button>
-          {menu && (
-          <div className="dropdown">
-            <ul>
-              <Link passHref href="/profile">
-                <li>My Videos</li>
-              </Link>
-              <li><button type="button" id="drop-btn" onClick={signOut}> Sign Out</button></li>
-            </ul>
-          </div>
+          {open && (
+            <div className="dropdown">
+              <ul>
+                <Link passHref href="/">
+                  <li>Home</li>
+                </Link>
+                <Link passHref href="/profile">
+                  <li>My Videos</li>
+                </Link>
+                <li><button type="button" id="drop-btn" onClick={signOut}> Sign Out</button></li>
+              </ul>
+            </div>
           )}
         </div>
       )
