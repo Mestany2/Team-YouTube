@@ -12,13 +12,14 @@ const VideoHome = ({
       <div className="video">
         <div>
           <Link passHref href={`/${id}--${firebaseKey}`}>
-            <Image className="rounded-4 " src={thumbnail} width="375" height="225" />
+            <div>
+              <Image className="rounded-4 " src={thumbnail} width="375" height="225" />
+            </div>
           </Link>
         </div>
         <div className="d-flex ps-4 pt-2">
-
           <div style={{ width: '24px', height: '24px' }}>
-            <Image className="rounded-circle" src={avatar} width="36" height="36" />
+            <Image className="rounded-circle" src={avatar} width="45" height="36" />
           </div>
           <div className="d-flex flex-column align-items-start px-3">
             <p className="fs-5 fw-semibold">{title}</p>
