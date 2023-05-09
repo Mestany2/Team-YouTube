@@ -32,7 +32,9 @@ export default function ProfilePage() {
           <h4 style={{ fontWeight: '500' }}>Uploads</h4>
           <VideoForm buttonText="Add a Video" bc="white" colorSet="black" fontSet="22px" onUpdate={getAllTheVideos} />
         </div>
-        {videos.map((video) => <UsersVideos key={video.video_id} videosObj={video} onUpdate={getAllTheVideos} formOnUpdate={getAllTheVideos} />)}
+        <div className="profile-vid">
+          {videos.map((video) => <UsersVideos key={video.video_id} videosObj={video} onUpdate={getAllTheVideos} formOnUpdate={getAllTheVideos} />)}
+        </div>
       </div>
     </>
   );

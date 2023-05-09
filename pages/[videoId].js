@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { getSingleVideo, getAllVideos } from '../api/videoData';
 import RecomendedVideos from '../components/VideoRecommended';
+import SideBar from '../components/SideBar';
 
 function Player() {
   const router = useRouter();
@@ -13,26 +14,25 @@ function Player() {
   const [videoKey, firebaseKey] = videoId.split('--');
 
   useEffect(() => {
-
     getSingleVideo(firebaseKey).then(setVidObj);
     getAllVideos().then(setAllVidsArray);
   }, [videoKey, firebaseKey]);
-
 
   const vidArrayLimit = allVidsArray.slice(0, 7);
 
   return (
     <>
+      <SideBar />
       <div className="outer-container d-flex">
         <div className="player-container">
           <iframe src={`https://www.youtube.com/embed/${videoKey}`} title="YouTube video player" border="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen width="905" height="509" />
 
-          <div><h2>{vidObj.title}</h2></div>
+          <div><h2>{vidObj?.title}</h2></div>
           <div className="d-flex flex-nowrap gap-2 ms-2 px-2">
-            <Image className="rounded-circle" src={vidObj.user_photo} width="40" height="40" />
+            <Image className="rounded-circle" src={vidObj?.user_photo} width="40" height="40" />
             <div className="p-2">
-              <h5 className="my-0 fw-semibold">{vidObj.userName}</h5>
-              <p style={{ maxWidth: '810px' }}>{vidObj.description}</p>
+              <h5 className="my-0 fw-semibold">{vidObj?.userName}</h5>
+              <p style={{ maxWidth: '810px' }}>{vidObj?.description}</p>
             </div>
           </div>
         </div>
