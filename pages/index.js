@@ -27,16 +27,17 @@ function Home({ query, setQuery }) {
     }
   }, []);
 
-  useEffect(() => {
-    if (query != null) {
-      getFilteredVideos(query).then((data) => {
-        const videoArray = data;
-        console.warn('Query: ', query);
-        setVideos(videoArray);
-      });
-    }
-  }, [query]);
+  // useEffect(() => {
+  //   if (query != null) {
+  //     getFilteredVideos(query).then((data) => {
+  //       const videoArray = data;
+  //       console.warn('Query: ', query);
+  //       setVideos(videoArray);
+  //     });
+  //   }
+  // }, [query]);
 
+  const filteredVids = videos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase()) || video.category.toLowerCase().includes(query.toLocaleLowerCase()));
   return (
 
     <>
@@ -47,7 +48,7 @@ function Home({ query, setQuery }) {
       </div>
       <div className="video-inside">
         <div className="video-container">
-          {videos.map((item) => <VideoHome key={v4()} id={item?.video_id} title={item?.title} thumbnail={item?.video_thumbnail} avatar={item?.user_photo} />)}
+          {filteredVids?.map((item) => <VideoHome key={v4()} id={item?.video_id} title={item?.title} thumbnail={item?.video_thumbnail} avatar={item?.user_photo} />)}
 
         </div>
       </div>
