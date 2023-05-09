@@ -1,11 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 export default function RecomendedVideos({ videosObj }) {
   return (
-    <Card className="d-flex flex-row mb-2" style={{ width: '25rem', height: '8rem' }}>
-      <Card.Img style={{ width: '12rem', height: '150' }} src={videosObj.video_thumbnail || videosObj.thumbnail} />
+    <Card className="d-flex flex-row mb-2" style={{ width: '25rem', height: '8rem', border: 'none' }}>
+      <Link href={`/${videosObj.video_id}--${videosObj.firebaseKey}`} passHref>
+        <Card.Img style={{ width: '12rem', height: '150' }} src={videosObj.video_thumbnail || videosObj.thumbnail} />
+      </Link>
       <Card.Body className="ms-2 d-flex flex-column">
         <Card.Title style={{ marginBottom: '20px', fontSize: '17px' }}>{videosObj.title}</Card.Title>
         <div className="d-flex">

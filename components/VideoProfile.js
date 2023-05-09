@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { Button, Card } from 'react-bootstrap';
@@ -15,7 +16,9 @@ export default function UsersVideos({ videosObj, onUpdate, formOnUpdate }) {
 
   return (
     <Card className="d-flex flex-row mb-2" style={{ width: '70rem', height: '9rem', border: 'none' }}>
-      <Card.Img style={{ width: '17rem', height: '150' }} src={videosObj.video_thumbnail || videosObj.thumbnail} />
+      <Link href={`/${videosObj.video_id}--${videosObj.firebaseKey}`} passHref>
+        <Card.Img style={{ width: '17rem', height: '150' }} src={videosObj.video_thumbnail || videosObj.thumbnail} />
+      </Link>
       <Card.Body className="ms-2 d-flex flex-column">
         <Card.Title style={{ marginBottom: '10px', fontSize: '25px' }}>{videosObj.title}</Card.Title>
         <Card.Text style={{ fontSize: '15px' }}>{videosObj.description}</Card.Text>
