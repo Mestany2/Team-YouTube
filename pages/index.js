@@ -6,10 +6,9 @@ import { getAllVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
 import SideBar from '../components/SideBar';
 
-const filterCategories = ['ALL', 'Coding', 'Music', 'Boxing', '3D Printing', 'Gym', 'Gaming', 'Guitar'];
 function Home({ query, setQuery }) {
   const [videos, setVideos] = useState([]);
-
+  const filterCategories = ['ALL', 'Coding', 'Music', 'Boxing', '3D Printing', 'Gym', 'Gaming', 'Guitar'];
   const unfilteredVideos = () => {
     getAllVideos().then((data) => {
       const videoArray = data;
@@ -32,7 +31,7 @@ function Home({ query, setQuery }) {
 
       <SideBar />
       <div className="filters">
-        {filterCategories.map((category) => <FilterComponent key={v4()} category={category} setQuery={setQuery} unfilteredVideos={unfilteredVideos} />)}
+        <FilterComponent filterCategories={filterCategories} setQuery={setQuery} unfilteredVideos={unfilteredVideos} />
       </div>
       <div className="video-inside">
         <div className="video-container">

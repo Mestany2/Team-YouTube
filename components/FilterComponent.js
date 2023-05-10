@@ -1,41 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 // import { getAllVideos } from '../api/videoData';
 
-const FilterComponent = ({ category, setQuery, unfilteredVideos }) => {
-  const [activeState, setActiveState] = useState(false);
-  const [buttonClick, setButtonClick] = useState(false);
+const FilterComponent = ({ filterCategories, setQuery, unfilteredVideos }) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const handleButtonState = (e) => {
-    if (e.target.value === 'ALL') {
+  const handleButtonState = (targetValue) => {
+    if (targetValue === 'ALL') {
       unfilteredVideos();
       setQuery('');
-      setButtonClick(true);
     } else {
-      setQuery(e.target.value);
-      setButtonClick((prev) => !prev);
+      setQuery(targetValue);
     }
   };
-  useEffect(() => {
-    setActiveState((prev) => !prev);
-    setButtonClick(false);
-  }, [buttonClick]);
 
   return (
     <>
-      {activeState ? <Button variant="dark" className="px-5 fw-semi-bold fs-5 py-1 mb-3" value={category} onClick={handleButtonState} active>{category}</Button>
-        : <Button variant="light" className="px-5 fw-semi-bold fs-5 py-1 mb-3" value={category} onClick={handleButtonState}>{category}</Button>}
+
+      {filterCategories.map((category, index) => (
+        selectedIndex === index ? <Button variant="dark" className="px-4 mx-2 fw-semi-bold fs-5 py-1 mb-3" value={category} onClick={handleButtonState} active>{category}</Button>
+          : (
+            <Button
+              variant="light"
+              className="px-4 mx-2 fw-semi-bold fs-5 py-1 mb-3"
+              value={category}
+              onClick={(e) => {
+                setSelectedIndex(index);
+                handleButtonState(e.target.value);
+              }}
+            >{category}
+            </Button>
+          )
+      ))}
 
     </>
 
   );
 };
-
 export default FilterComponent;
 
 FilterComponent.propTypes = {
-  category: PropTypes.string.isRequired,
   setQuery: PropTypes.func.isRequired,
   unfilteredVideos: PropTypes.func.isRequired,
+  filterCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
