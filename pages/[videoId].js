@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { getSingleVideo, getAllVideos } from '../api/videoData';
+import { getSingleVideo, getAllVideos, getCommentsByVideoId } from '../api/videoData';
 import RecomendedVideos from '../components/VideoRecommended';
 import SideBar from '../components/SideBar';
 import CommentForm from '../components/forms/CommentForm';
@@ -17,7 +17,10 @@ function Player() {
   useEffect(() => {
     getSingleVideo(firebaseKey).then(setVidObj);
     getAllVideos().then(setAllVidsArray);
+    getCommentsByVideoId(videoKey).then();
   }, [videoKey, firebaseKey]);
+
+  const getVidComments = () => { getCommentsByVideoId(videoKey).then(); };
 
   const vidArrayLimit = allVidsArray.slice(0, 7);
   return (
@@ -37,9 +40,10 @@ function Player() {
               <p style={{ maxWidth: '500px' }}>{vidObj?.description}</p>
             </div>
           </div>
+          <span>Comments</span>
           <div className="comment-container">
             <div>
-              <CommentForm videoId={videoKey} />
+              <CommentForm videoId={videoKey} onUpdate={getVidComments} />
             </div>
           </div>
         </div>

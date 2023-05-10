@@ -5,6 +5,10 @@ import Link from 'next/link';
 import {
   Navbar, Container, Nav, Button, Image,
 } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBars, faBell, faMicrophoneAlt, faVideo,
+} from '@fortawesome/free-solid-svg-icons';
 import { signIn, signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
@@ -15,10 +19,10 @@ export default function NavBarAuth({ query, setQuery }) {
   return (
     <div className="navbar">
       <Navbar collapseOnSelect expand="lg" bg="white">
-
+        <div className="bar-bars"> <FontAwesomeIcon icon={faBars} /> </div>
         <Link passHref href="/">
           <Navbar.Brand>
-            <Image src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="Logo" style={{ width: 100, marginTop: -7, marginLeft: 100 }} />
+            <Image src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="Logo" style={{ width: 100, marginTop: 1, marginLeft: 20 }} />
           </Navbar.Brand>
         </Link>
         <Container>
@@ -30,6 +34,9 @@ export default function NavBarAuth({ query, setQuery }) {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" />
         </Container>
+        <div className="bar-mic"> <FontAwesomeIcon icon={faMicrophoneAlt} /> </div>
+        <div className="bar-cam"> <FontAwesomeIcon icon={faVideo} /> </div>
+        <div className="bar-bell"> <FontAwesomeIcon icon={faBell} /> </div>
         {user ? (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <div id="Profile-logo" role="button" tabIndex={0} onClick={() => { setOpen(!open); }}>

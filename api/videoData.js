@@ -87,7 +87,7 @@ const deleteVideo = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 const getCommentsByVideoId = (videoId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/comments.json?orderBy="uid"&equalTo="${videoId}"`, {
+  fetch(`${dbUrl}/comments.json?orderBy="video_id"&equalTo="${videoId}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
