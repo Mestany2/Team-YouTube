@@ -24,7 +24,7 @@ function Player() {
       <SideBar />
       <div className="outer-container d-flex">
         <div className="player-container">
-          <iframe src={`https://www.youtube.com/embed/${videoKey}`} title="YouTube video player" border="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen width="905" height="509" />
+          <iframe src={`https://www.youtube.com/embed/${videoKey}`} title="YouTube video player" border="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen width="1175" height="609" />
 
           <div><h2>{vidObj?.title}</h2></div>
           <div className="d-flex flex-nowrap gap-2 ms-2 px-2">
@@ -37,7 +37,7 @@ function Player() {
             </div>
           </div>
         </div>
-        <div className="recomended-container m-2">
+        <div className="recom-section">
           {vidArrayLimit.map((video) => <RecomendedVideos key={video.firebaseKey} videosObj={video} />)}
         </div>
       </div>
