@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { FloatingLabel } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { updateVideo, uploadNewVideo } from '../../api/videoData';
 
@@ -168,7 +168,7 @@ VideoForm.propTypes = {
     user_photo: PropTypes.string,
     userName: PropTypes.string,
   }),
-  buttonText: PropTypes.string.isRequired,
+  buttonText: PropTypes.shape.isRequired,
   bc: PropTypes.string,
   colorSet: PropTypes.string,
   borderSet: PropTypes.string,
