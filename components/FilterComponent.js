@@ -18,7 +18,7 @@ const FilterComponent = ({ category, setQuery, unfilteredVideos }) => {
   return (
     <>
       {activeState ? <Button variant="dark" className="px-3 fw-semi-bold fs-5 py-1 mb-3" value={category} onClick={handleButtonState}>{category}</Button>
-        : <Button variant="light" className="px-3 fw-semi-bold fs-5 py-1 mb-3" value={category} onClick={handleButtonState}>{category}</Button>}
+        : <Button variant="light" className="px-5 fw-semi-bold fs-5 py-1 mb-3" value={category} onClick={handleButtonState}>{category}</Button>}
 
     </>
 

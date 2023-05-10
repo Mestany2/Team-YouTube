@@ -5,9 +5,9 @@ import { v4 } from 'uuid';
 import FilterComponent from '../components/FilterComponent';
 import { getAllVideos } from '../api/videoData';
 import VideoHome from '../components/VideoHome';
-import { filterCategories } from '../utils/data/categories';
 import SideBar from '../components/SideBar';
 
+const filterCategories = ['ALL', 'Coding', 'Music', 'Boxing', '3D Printing', 'Gym', 'Gaming', 'Guitar'];
 function Home({ query, setQuery }) {
   const [videos, setVideos] = useState([]);
 
@@ -19,25 +19,14 @@ function Home({ query, setQuery }) {
   };
 
   useEffect(() => {
-    if (query != null) {
-      getAllVideos().then((data) => {
-        const videoArray = data;
-        setVideos(videoArray);
-      });
-    }
+    getAllVideos().then((data) => {
+      const videoArray = data;
+      setVideos(videoArray);
+    });
   }, []);
 
-  // useEffect(() => {
-  //   if (query != null) {
-  //     getFilteredVideos(query).then((data) => {
-  //       const videoArray = data;
-  //       console.warn('Query: ', query);
-  //       setVideos(videoArray);
-  //     });
-  //   }
-  // }, [query]);
-
   const filteredVids = videos.filter((video) => video.title.toLowerCase().includes(query.toLowerCase()) || video.category.toLowerCase().includes(query.toLocaleLowerCase()));
+
   return (
 
     <>
