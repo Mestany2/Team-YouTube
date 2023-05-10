@@ -18,7 +18,7 @@ export default function NavBarAuth({ query, setQuery }) {
 
         <Link passHref href="/">
           <Navbar.Brand>
-            <Image src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="logo" style={{ width: 100, marginTop: -7, marginLeft: 100 }} />
+            <Image src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png" alt="Logo" style={{ width: 100, marginTop: -7, marginLeft: 100 }} />
           </Navbar.Brand>
         </Link>
         <Container>
