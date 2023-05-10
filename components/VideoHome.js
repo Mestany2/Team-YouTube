@@ -22,7 +22,7 @@ const VideoHome = ({
             <Image className="rounded-circle" src={avatar} width="45" height="36" />
           </div>
           <div className="d-flex flex-column align-items-start px-3">
-            <p className="fs-5 fw-semibold">{title}</p>
+            <p className="fs-5 fw-semibold" style={{ width: '15rem' }}>{title}</p>
           </div>
         </div>
       </div>

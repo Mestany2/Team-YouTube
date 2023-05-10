@@ -16,7 +16,6 @@ export default function ProfilePage() {
 
   useEffect(() => {
     getAllTheVideos();
-    console.warn(`user photo url ${user.photoURL}`);
   }, []);
 
   const videoCount = videos.length;
