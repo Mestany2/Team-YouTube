@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { getSingleVideo, getAllVideos } from '../api/videoData';
+import { getSingleVideo, getAllVideos, updateVideo } from '../api/videoData';
 import RecomendedVideos from '../components/VideoRecommended';
 import SideBar from '../components/SideBar';
+import Likes from '../components/LikesButton';
 
 function Player() {
   const router = useRouter();
@@ -17,6 +18,10 @@ function Player() {
     getSingleVideo(firebaseKey).then(setVidObj);
     getAllVideos().then(setAllVidsArray);
   }, [videoKey, firebaseKey]);
+
+  const updateVideoHandler = (vidEntity) => {
+    updateVideo(vidEntity).then((data) => setVidObj(data));
+  };
 
   const vidArrayLimit = allVidsArray.slice(0, 7);
   return (
@@ -34,6 +39,7 @@ function Player() {
             <div className="p-2">
               <h5 className="my-0 fw-semibold">{vidObj?.userName}</h5>
               <p style={{ maxWidth: '500px' }}>{vidObj?.description}</p>
+              <Likes vidObj={vidObj} updateVideoHandler={updateVideoHandler} />
             </div>
           </div>
         </div>
