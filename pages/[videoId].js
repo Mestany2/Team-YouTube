@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { getSingleVideo, getAllVideos } from '../api/videoData';
 import RecomendedVideos from '../components/VideoRecommended';
 import SideBar from '../components/SideBar';
+import CommentForm from '../components/forms/CommentForm';
 
 function Player() {
   const router = useRouter();
@@ -27,13 +28,18 @@ function Player() {
           <iframe src={`https://www.youtube.com/embed/${videoKey}`} title="YouTube video player" border="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen width="1175" height="609" />
 
           <div><h2>{vidObj?.title}</h2></div>
-          <div className="d-flex flex-nowrap gap-2 ms-2 px-2">
+          <div className="d-flex flex-nowrap gap-2">
             <div style={{ width: '150px', height: '40px' }}>
               {vidObj.user_photo && (<Image className="rounded-circle" src={vidObj.user_photo} alt="image" width="75" height="75" />)}
             </div>
             <div className="p-2">
               <h5 className="my-0 fw-semibold">{vidObj?.userName}</h5>
               <p style={{ maxWidth: '500px' }}>{vidObj?.description}</p>
+            </div>
+          </div>
+          <div className="comment-container">
+            <div>
+              <CommentForm videoId={videoKey} />
             </div>
           </div>
         </div>
