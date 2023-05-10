@@ -42,28 +42,36 @@ export default function CommentForm({ videoId, onUpdate }) {
 
   return (
     <>
-      <div className="d-flex flex-column" id="comment-conainer" style={{ width: '1400px' }}>
-        <Form onSubmit={handleSubmit} className="d-flex">
-          <div className="d-flex" style={{ width: '1069px' }}>
-            <Card.Img src={user.photoURL} style={{ width: '50px', borderRadius: '100px' }} className="me-3 d-flex flex-column" />
-            <Form.Control
-              type="text"
-              placeholder="Add a comment..."
-              name="comment"
-              value={formInput.comment}
-              onChange={handleChange}
-              className="d-flex"
-              required
-            />
+      {user ? (
+        <>
+          <div className="d-flex flex-column" id="comment-conainer" style={{ width: '1400px' }}>
+            <Form onSubmit={handleSubmit} className="d-flex">
+              <div className="d-flex" style={{ width: '1069px' }}>
+                <Card.Img src={user.photoURL} style={{ width: '50px', borderRadius: '100px' }} className="me-3 d-flex flex-column" />
+                <Form.Control
+                  type="text"
+                  placeholder="Add a comment..."
+                  name="comment"
+                  value={formInput.comment}
+                  onChange={handleChange}
+                  className="d-flex"
+                  required
+                />
+              </div>
+              <div className="text-right m-2" style={{ textAlign: 'right' }}>
+                <Button type="submit" onClick={onUpdate} style={{ borderRadius: '30px', height: '40px', fontWeight: '600' }}>Comment</Button>
+              </div>
+            </Form>
           </div>
-          <div className="text-right m-2" style={{ textAlign: 'right' }}>
-            <Button type="submit" onClick={onUpdate} style={{ borderRadius: '30px', height: '40px', fontWeight: '600' }}>Comment</Button>
+          <div className="list-comments">
+            {comments?.map((comment) => <CommentBox commObj={comment} videoId={comment.video_id} />)}
           </div>
-        </Form>
-      </div>
-      <div className="list-comments">
-        {comments?.map((comment) => <CommentBox commObj={comment} videoId={comment.video_id} />)}
-      </div>
+        </>
+      ) : (
+        <div className="list-comments">
+          {comments?.map((comment) => <CommentBox commObj={comment} videoId={comment.video_id} />)}
+        </div>
+      )}
     </>
   );
 }
