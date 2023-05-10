@@ -252,3 +252,8 @@ li:hover {
 .bar-mic{
   margin-right: 480px;
 }
+.active{
+  background-color: #242424;
+  color: #fff;
+  border-radius: 5px;
+}
