@@ -234,3 +234,21 @@ li:hover {
   margin-left: 500px;
   margin-top: 2px;
 }
+.comment-avatar{
+  border-radius: 100px;
+  height: 30px;
+  margin-right: 10px;
+}
+.comment-container{
+  margin-top: 10px;
+}
+.list-comments{
+  margin-top: 40px;
+}
+.bar-bell{
+  margin-right: 15px;
+  margin-left: 10px;
+}
+.bar-mic{
+  margin-right: 480px;
+}
