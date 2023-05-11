@@ -124,6 +124,56 @@ const updateComment = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getAllInPlaylist = (playlistUid) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/playlist.json?orderBy="uid"&equalTo="${playlistUid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
+const addToPlaylist = (payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/playlist.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const updatePlaylist = (payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/playlist/${payload.firebaseKey}.json`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+const deleteVideoFromPlaylist = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/playlist/${firebaseKey}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getAllVideos,
   getSingleVideo,
@@ -135,4 +185,8 @@ export {
   getCommentsByVideoId,
   createComment,
   updateComment,
+  getAllInPlaylist,
+  addToPlaylist,
+  updatePlaylist,
+  deleteVideoFromPlaylist,
 };

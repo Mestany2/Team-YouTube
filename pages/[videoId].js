@@ -9,6 +9,8 @@ import RecomendedVideos from '../components/VideoRecommended';
 import SideBar from '../components/SideBar';
 import CommentForm from '../components/forms/CommentForm';
 import Likes from '../components/LikesButton';
+import { useAuth } from '../utils/context/authContext';
+import AddToPlaylist from '../components/AddToPlaylist';
 
 function Player() {
   const router = useRouter();
@@ -16,6 +18,7 @@ function Player() {
   const [vidObj, setVidObj] = useState({});
   const [allVidsArray, setAllVidsArray] = useState([]);
   const [videoKey, firebaseKey] = videoId.split('--');
+  const { user } = useAuth();
 
   useEffect(() => {
     getSingleVideo(firebaseKey).then(setVidObj);
@@ -29,7 +32,7 @@ function Player() {
     updateVideo(vidEntity).then((data) => setVidObj(data));
   };
 
-  const vidArrayLimit = allVidsArray.slice(0, 7);
+  const vidArrayLimit = allVidsArray.slice(0, 9);
   return (
     <>
       <SideBar />
@@ -37,7 +40,10 @@ function Player() {
         <div className="player-container">
           <iframe src={`https://www.youtube.com/embed/${videoKey}`} title="YouTube video player" border="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen width="1175" height="609" />
 
-          <div><h2>{vidObj?.title}</h2></div>
+          <div className="d-flex justify-content-between" style={{ width: '1175px' }}>
+            <h2>{vidObj?.title}</h2>
+            <AddToPlaylist obj={vidObj} playlistUid={user.uid} />
+          </div>
           <div className="d-flex flex-nowrap gap-2">
             <div style={{ width: '150px', height: '40px' }}>
               {vidObj.user_photo && (<Image className="rounded-circle" src={vidObj.user_photo} alt="image" width="75" height="75" />)}

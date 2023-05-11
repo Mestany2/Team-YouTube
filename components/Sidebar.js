@@ -20,7 +20,7 @@ const SideBar = () => (
       <br />
       <FontAwesomeIcon icon={faClockRotateLeft} /><Link passHref href="/" className="links"> History </Link> <br />
       <br />
-      <FontAwesomeIcon icon={faClapperboard} /><Link passHref href="/" className="links"> Your Videos </Link> <br />
+      <FontAwesomeIcon icon={faClapperboard} /><Link passHref href="/" className="links"> My Playlist </Link> <br />
       <br />
       <FontAwesomeIcon icon={faClock} /><Link passHref href="/" className="links"> Watch Later </Link> <br />
       <br />
