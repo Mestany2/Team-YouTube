@@ -28,7 +28,7 @@ function Home({ query, setQuery }) {
   return (
 
     <>
-
+      <title>Home</title>
       <SideBar />
       <div className="filters">
         <FilterComponent filterCategories={filterCategories} setQuery={setQuery} unfilteredVideos={unfilteredVideos} />

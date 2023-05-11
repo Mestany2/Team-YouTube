@@ -22,6 +22,7 @@ export default function ProfilePage() {
 
   return (
     <>
+      <title>Profile</title>
       <SideBar />
       <div className="d-flex justify-content-" id="profile-card">
         <ProfileCard count={videoCount} />

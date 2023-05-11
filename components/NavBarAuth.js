@@ -27,14 +27,15 @@ export default function NavBarAuth({ query, setQuery }) {
         </Link>
         <Container>
           <div className="wrap">
-            <div className="search">
-              <input type="search" className="searchTerm me-2 rounded-pill" value={query} placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
+            <div className="input-group flex-nowrap">
+              <input type="text" className="form-control" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search" aria-label="Search" aria-describedby="addon-wrapping" />
+              <span className="input-group-text" id="addon-wrapping"><FontAwesomeIcon icon={faMicrophoneAlt} /></span>
             </div>
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" />
         </Container>
-        <div className="bar-mic"> <FontAwesomeIcon icon={faMicrophoneAlt} /> </div>
+        {/* <div className="bar-mic"> <FontAwesomeIcon icon={faMicrophoneAlt} /> </div> */}
         <div className="bar-cam"> <FontAwesomeIcon icon={faVideo} /> </div>
         <div className="bar-bell"> <FontAwesomeIcon icon={faBell} /> </div>
         {user ? (

@@ -13,13 +13,13 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return <Loading />;
   }
 
-
   if (user) {
     return (
       <>
         <NavBarAuth query={query} setQuery={setQuery} user={user} />
-        <Component {...pageProps} query={query} setQuery={setQuery} />
-
+        <div className="mx-auto" style={{ width: '90%' }}>
+          <Component {...pageProps} query={query} setQuery={setQuery} />
+        </div>
       </>
     );
   }
@@ -27,7 +27,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   return (
     <>
       <NavBarAuth query={query} setQuery={setQuery} />
-      <div className="mx-auto" style={{ width: '80%' }}>
+      <div className="mx-auto" style={{ width: '90%' }}>
         <Component {...pageProps} query={query} setQuery={setQuery} />
       </div>
     </>
