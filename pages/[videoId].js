@@ -11,6 +11,7 @@ import CommentForm from '../components/forms/CommentForm';
 import Likes from '../components/LikesButton';
 import { useAuth } from '../utils/context/authContext';
 import AddToPlaylist from '../components/AddToPlaylist';
+import Dislikes from '../components/DislikesButton';
 
 function Player() {
   const router = useRouter();
@@ -52,7 +53,10 @@ function Player() {
             <div className="p-2">
               <h5 className="my-0 fw-semibold">{vidObj?.userName}</h5>
               <p style={{ maxWidth: '500px' }}>{vidObj?.description}</p>
-              <Likes vidObj={vidObj} updateVideoHandler={updateVideoHandler} />
+              <div className="d-flex flex-nowrap gap-2">
+                <Likes vidObj={vidObj} updateVideoHandler={updateVideoHandler} />
+                <Dislikes vidObj={vidObj} updateVideoHandler={updateVideoHandler} />
+              </div>
             </div>
           </div>
           <span>Comments</span>
