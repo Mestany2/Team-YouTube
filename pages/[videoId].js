@@ -35,6 +35,7 @@ function Player() {
   const vidArrayLimit = allVidsArray.slice(0, 9);
   return (
     <>
+      <title>Video Player</title>
       <SideBar />
       <div className="outer-container d-flex">
         <div className="player-container">
