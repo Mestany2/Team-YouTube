@@ -6,7 +6,6 @@ import {
   getSingleVideo, getAllVideos, getCommentsByVideoId, updateVideo,
 } from '../api/videoData';
 import RecomendedVideos from '../components/VideoRecommended';
-import SideBar from '../components/SideBar';
 import CommentForm from '../components/forms/CommentForm';
 import Likes from '../components/LikesButton';
 import { useAuth } from '../utils/context/authContext';
@@ -37,7 +36,7 @@ function Player() {
   return (
     <>
       <title>Video Player</title>
-      <SideBar />
+
       <div className="outer-container d-flex">
         <div className="player-container">
           <iframe src={`https://www.youtube.com/embed/${videoKey}`} title="YouTube video player" border="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen width="1175" height="609" />
