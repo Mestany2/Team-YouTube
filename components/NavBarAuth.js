@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBars, faBell, faMicrophoneAlt, faVideo,
+  faBars, faBell, faMagnifyingGlass, faMicrophoneAlt, faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 import { signIn, signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
@@ -29,13 +29,13 @@ export default function NavBarAuth({ query, setQuery }) {
           <div className="wrap">
             <div className="input-group flex-nowrap">
               <input type="text" className="form-control" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search" aria-label="Search" aria-describedby="addon-wrapping" />
-              <span className="input-group-text" id="addon-wrapping"><FontAwesomeIcon icon={faMicrophoneAlt} /></span>
+              <span className="input-group-text" id="addon-wrapping"><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
             </div>
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav" />
         </Container>
-        {/* <div className="bar-mic"> <FontAwesomeIcon icon={faMicrophoneAlt} /> </div> */}
+        <div className="bar-mic"> <FontAwesomeIcon icon={faMicrophoneAlt} /> </div>
         <div className="bar-cam"> <FontAwesomeIcon icon={faVideo} /> </div>
         <div className="bar-bell"> <FontAwesomeIcon icon={faBell} /> </div>
         {user ? (
