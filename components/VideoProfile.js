@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { Button, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { deleteVideo } from '../api/videoData';
 import VideoForm from './forms/VideoForm';
+import deleteVideoAndFromPlaylist from '../api/mergedData';
 
 export default function UsersVideos({ videosObj, onUpdate, formOnUpdate }) {
   const deleteThisVideo = () => {
     if (window.confirm(`Delete ${videosObj.title}?`)) {
-      deleteVideo(videosObj.firebaseKey).then(() => onUpdate());
+      deleteVideoAndFromPlaylist(videosObj.firebaseKey).then(() => onUpdate());
     }
   };
 

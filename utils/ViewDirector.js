@@ -8,6 +8,7 @@ import NavBarAuth from '../components/NavBarAuth';
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
   const [query, setQuery] = useState('');
+  const [displayTrue, setDisplayFalse] = useState(true);
   // if user state is null, then show loader
   if (userLoading) {
     return <Loading />;
@@ -17,8 +18,8 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user) {
     return (
       <>
-        <NavBarAuth query={query} setQuery={setQuery} user={user} />
-        <Component {...pageProps} query={query} setQuery={setQuery} />
+        <NavBarAuth query={query} setQuery={setQuery} user={user} displayTrue={displayTrue} setDisplayFalse={setDisplayFalse} />
+        <Component {...pageProps} query={query} setQuery={setQuery} displayTrue={displayTrue} setDisplayFalse={setDisplayFalse} />
 
       </>
     );
