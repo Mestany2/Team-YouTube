@@ -11,7 +11,7 @@ const Dislikes = ({ vidObj, updateVideoHandler }) => {
   return (
     <>
       <div>
-        <button type="button" onClick={addDislikes}><FontAwesomeIcon icon={faThumbsDown} />{vidObj.dislikes ? vidObj.dislikes : 0}</button>
+        <button className="dislikesButton" type="button" onClick={addDislikes}><FontAwesomeIcon className="pe-2" icon={faThumbsDown} />{vidObj.dislikes ? vidObj.dislikes : 0}</button>
       </div>
     </>
   );

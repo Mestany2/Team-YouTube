@@ -17,7 +17,7 @@ const initialState = {
   user_photo: '',
 };
 
-export default function AddToPlaylist({ obj, playlistUid }) {
+export default function AddToPlaylist({ obj, playlistUid, currentFirebaseKey }) {
   const [videoObj, setVidObj] = useState(initialState);
   useEffect(() => {
     setVidObj(obj);
@@ -27,8 +27,10 @@ export default function AddToPlaylist({ obj, playlistUid }) {
     e.preventDefault();
     const playload = { ...videoObj, playlist_uid: playlistUid };
     addToPlaylist(playload).then(({ name }) => {
-      const patchPayload = { firebaseKey: name };
-      updatePlaylist(patchPayload).then();
+      const patchPayload = { firebaseKey: currentFirebaseKey, actualKey: name };
+      updatePlaylist(patchPayload, name).then(() => {
+        window.alert('Added to Playlist');
+      });
     });
   };
 
@@ -65,4 +67,5 @@ AddToPlaylist.propTypes = {
     user_photo: PropTypes.string,
   }).isRequired,
   playlistUid: PropTypes.string.isRequired,
+  currentFirebaseKey: PropTypes.string.isRequired,
 };

@@ -11,7 +11,6 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   const { user, userLoading } = useAuth();
   const [query, setQuery] = useState('');
   const [videos, setVideos] = useState([]);
-
   const unfilteredVideos = () => {
     getAllVideos().then((data) => {
       const videoArray = data;

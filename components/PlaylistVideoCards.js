@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Button, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { deleteVideo } from '../api/videoData';
+import { deleteVideoFromPlaylist } from '../api/videoData';
 
 export default function PlaylistVideoCard({ videosObj, onUpdate }) {
   const deleteThisVideoFromPlaylist = () => {
     if (window.confirm(`Delete ${videosObj.title} from your playlist?`)) {
-      deleteVideo(videosObj.firebaseKey).then(() => onUpdate());
+      deleteVideoFromPlaylist(videosObj.actualKey).then(() => onUpdate());
     }
   };
 
@@ -55,6 +55,7 @@ PlaylistVideoCard.propTypes = {
     userName: PropTypes.string,
     user_photo: PropTypes.string,
     playlist_uid: PropTypes.string,
+    actualKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

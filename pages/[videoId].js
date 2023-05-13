@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import {
-  getSingleVideo, getAllVideos, getCommentsByVideoId, updateVideo,
+  getSingleVideo, getAllVideos, getCommentsByVideoId, updateVideo, getVideoFromAllPlaylist,
 } from '../api/videoData';
 import RecomendedVideos from '../components/VideoRecommended';
 import CommentForm from '../components/forms/CommentForm';
@@ -24,6 +24,9 @@ function Player() {
     getSingleVideo(firebaseKey).then(setVidObj);
     getAllVideos().then(setAllVidsArray);
     getCommentsByVideoId(videoKey).then();
+    getVideoFromAllPlaylist(firebaseKey).then((videoArray) => {
+      console.warn(`Video array ${videoArray}`);
+    });
   }, [videoKey, firebaseKey]);
 
   const getVidComments = () => { getCommentsByVideoId(videoKey).then(); };
@@ -43,7 +46,7 @@ function Player() {
 
           <div className="d-flex justify-content-between" style={{ width: '1175px' }}>
             <h2>{vidObj?.title}</h2>
-            <AddToPlaylist obj={vidObj} playlistUid={user.uid} />
+            <AddToPlaylist obj={vidObj} playlistUid={user.uid} currentFirebaseKey={firebaseKey} />
           </div>
           <div className="d-flex flex-nowrap gap-2">
             <div style={{ width: '150px', height: '40px' }}>
