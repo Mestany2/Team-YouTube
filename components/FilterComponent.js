@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-// import { getAllVideos } from '../api/videoData';
 
 const FilterComponent = ({ filterCategories, setQuery, unfilteredVideos }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
