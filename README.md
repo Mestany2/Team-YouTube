@@ -5,6 +5,7 @@ Youtube allows you to view and play videos added by different users. Users are a
 Also, users can create their own playlist and add any video that is on the app to it. 
 
 ## Link to the deployed project
+<https://group-youtube.netlify.app/>
 
 
 
