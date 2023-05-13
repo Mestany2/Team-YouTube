@@ -4,7 +4,7 @@ import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 // import Signin from '../components/Signin';
 import NavBarAuth from '../components/NavBarAuth';
-import SideBar from '../components/Sidebar';
+import SideBar from '../components/SideBar';
 import { getAllVideos } from '../api/videoData';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
