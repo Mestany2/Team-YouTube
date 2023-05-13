@@ -19,11 +19,11 @@ const FilterComponent = ({ filterCategories, setQuery, unfilteredVideos }) => {
     <>
 
       {filterCategories.map((category, index) => (
-        selectedIndex === index ? <Button variant="dark" className="px-4 mx-2 fw-semi-bold fs-5 py-1 mb-3" value={category} onClick={handleButtonState} active>{category}</Button>
+        selectedIndex === index ? <Button variant="dark" className="border-0 px-4 mx-2 fw-semi-bold fs-5 py-1 mb-3" value={category} onClick={handleButtonState} active>{category}</Button>
           : (
             <Button
               variant="light"
-              className="px-4 mx-2 fw-semi-bold fs-5 py-1 mb-3"
+              className="bg-transparent border-0 px-4 mx-2 fw-semi-bold fs-5 py-1 mb-3"
               value={category}
               onClick={(e) => {
                 setSelectedIndex(index);

@@ -6,7 +6,6 @@ import { getUserVideos, getAllInPlaylist } from '../api/videoData';
 import { useAuth } from '../utils/context/authContext';
 import UsersVideos from '../components/VideoProfile';
 import VideoForm from '../components/forms/VideoForm';
-import SideBar from '../components/SideBar';
 import PlaylistVideoCard from '../components/PlaylistVideoCards';
 
 export default function ProfilePage() {
@@ -43,44 +42,52 @@ export default function ProfilePage() {
   } else if (display === 'playlist') {
     displayComponent = playlistVideos.map((video) => <PlaylistVideoCard key={video.firebaseKey} videosObj={video} onUpdate={getAllTheVideosInPlaylist} />);
   }
-  console.warn(display);
+
   return (
-    <>
-      <SideBar />
-      <div className="d-flex justify-content-" id="profile-card">
-        <ProfileCard count={videoCount} />
-      </div>
-      <div className="d-flex flex-column">
-        <div className="mb-2 d-flex justify-content-between w-50" id="profile-btn">
-          <Button
-            onClick={handleShowUserVid}
-            style={{
-              border: 'none',
-              backgroundColor: 'white',
-              color: 'black',
-              fontSize: '23px',
-            }}
-          >
-            Uploads
-          </Button>
-          <Button
-            type="button"
-            onClick={handlePlaylistShow}
-            style={{
-              border: 'none',
-              backgroundColor: 'white',
-              color: 'black',
-              fontSize: '23px',
-            }}
-          >
-            Playlist
-          </Button>
-          <VideoForm buttonText="Add a Video" bc="white" colorSet="black" fontSet="22px" onUpdate={getAllTheVideos} />
+      <title>Profile</title>
+      { user ? (
+        <>
+          <div className="d-flex justify-content-" id="profile-card">
+            <ProfileCard count={videoCount} />
+          </div>
+          <div className="d-flex flex-column">
+            <div className="mb-2 d-flex justify-content-between w-50" id="profile-btn">
+              <h4 style={{ fontWeight: '500' }}>Uploads</h4>
+              <Button
+                type="button"
+                style={{
+                  border: 'none',
+                  backgroundColor: 'white',
+                  color: 'black',
+                  fontSize: '23px',
+                }}
+              >
+                Playlist
+              </Button>
+              <Button
+                type="button"
+                onClick={handlePlaylistShow}
+                style={{
+                  border: 'none',
+                  backgroundColor: 'white',
+                  color: 'black',
+                  fontSize: '23px',
+                }}
+              >
+              Playlist
+           </Button>
+              <VideoForm buttonText="Add a Video" bc="white" colorSet="black" fontSet="22px" onUpdate={getAllTheVideos} />
+            </div>
+            <div className="profile-vid">
+              {videos.map((video) => <UsersVideos key={video.video_id} videosObj={video} onUpdate={getAllTheVideos} formOnUpdate={getAllTheVideos} />)}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="signInWarn">
+          <h3>You must be signed in to view your content.</h3>
         </div>
-        <div className="profile-vid">
-          {displayComponent}
-        </div>
-      </div>
+      )}
     </>
   );
 }

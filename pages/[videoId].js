@@ -6,11 +6,11 @@ import {
   getSingleVideo, getAllVideos, getCommentsByVideoId, updateVideo, getVideoFromAllPlaylist,
 } from '../api/videoData';
 import RecomendedVideos from '../components/VideoRecommended';
-import SideBar from '../components/SideBar';
 import CommentForm from '../components/forms/CommentForm';
 import Likes from '../components/LikesButton';
 import { useAuth } from '../utils/context/authContext';
 import AddToPlaylist from '../components/AddToPlaylist';
+import Dislikes from '../components/DislikesButton';
 
 function Player() {
   const router = useRouter();
@@ -38,7 +38,8 @@ function Player() {
   const vidArrayLimit = allVidsArray.slice(0, 9);
   return (
     <>
-      <SideBar />
+      <title>Video Player</title>
+
       <div className="outer-container d-flex">
         <div className="player-container">
           <iframe src={`https://www.youtube.com/embed/${videoKey}`} title="YouTube video player" border="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen width="1175" height="609" />
@@ -54,7 +55,10 @@ function Player() {
             <div className="p-2">
               <h5 className="my-0 fw-semibold">{vidObj?.userName}</h5>
               <p style={{ maxWidth: '500px' }}>{vidObj?.description}</p>
-              <Likes vidObj={vidObj} updateVideoHandler={updateVideoHandler} />
+              <div className="d-flex flex-nowrap gap-2">
+                <Likes vidObj={vidObj} updateVideoHandler={updateVideoHandler} />
+                <Dislikes vidObj={vidObj} updateVideoHandler={updateVideoHandler} />
+              </div>
             </div>
           </div>
           <span>Comments</span>

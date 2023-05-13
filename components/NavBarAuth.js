@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBars, faBell, faMicrophoneAlt, faVideo,
+  faBars, faBell, faMagnifyingGlass, faMicrophoneAlt, faVideo,
 } from '@fortawesome/free-solid-svg-icons';
 import { signIn, signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
@@ -27,8 +27,9 @@ export default function NavBarAuth({ query, setQuery }) {
         </Link>
         <Container>
           <div className="wrap">
-            <div className="search">
-              <input type="search" className="searchTerm me-2 rounded-pill" value={query} placeholder="Search" onChange={(e) => setQuery(e.target.value)} />
+            <div className="input-group flex-nowrap">
+              <input type="text" className="form-control" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search" aria-label="Search" aria-describedby="addon-wrapping" />
+              <span className="input-group-text" id="addon-wrapping"><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
             </div>
           </div>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
