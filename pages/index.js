@@ -8,8 +8,6 @@ import VideoHome from '../components/VideoHome';
 function Home({
   query, setQuery, unfilteredVideos, videos,
 }) {
-  // const filterCategories = ['ALL', 'Coding', 'Music', 'Boxing', '3D Printing', 'Gym', 'Gaming', 'Guitar'];
-
   const filterCategories = Array.from(new Set(videos.map((video) => video.category.charAt(0).toUpperCase()
   + video.category.slice(1))));
 

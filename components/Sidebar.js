@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowDown, faClapperboard, faClock, faClockRotateLeft, faFilm, faHouse, faPlayCircle, faThumbsUp, faVideoCamera,
 } from '@fortawesome/free-solid-svg-icons';
+
 const SideBar = ({ setQuery, unfilteredVideos }) => {
   const router = useRouter();
   return (
