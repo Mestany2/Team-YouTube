@@ -10,7 +10,6 @@ import { getAllVideos } from '../api/videoData';
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
   const [query, setQuery] = useState('');
-  const [displayTrue, setDisplayFalse] = useState(true);
   const [videos, setVideos] = useState([]);
   const unfilteredVideos = () => {
     getAllVideos().then((data) => {
@@ -30,6 +29,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
         <SideBar setQuery={setQuery} unfilteredVideos={unfilteredVideos} />
         <div className="mx-auto" style={{ width: '90%' }}>
           <Component {...pageProps} query={query} setQuery={setQuery} videos={videos} setVideos={setVideos} unfilteredVideos={unfilteredVideos} />
+        </div>
       </>
     );
   }

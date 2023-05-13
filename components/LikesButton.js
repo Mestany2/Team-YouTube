@@ -12,7 +12,7 @@ const Likes = ({ vidObj, updateVideoHandler }) => {
   return (
     <>
       <div>
-        <button type="button" onClick={addLikes}><FontAwesomeIcon icon={faThumbsUp} />{vidObj.likes}</button>
+        <button className="likesButton" type="button" onClick={addLikes}><FontAwesomeIcon className="pe-2" icon={faThumbsUp} />{vidObj.likes}</button>
       </div>
     </>
   );

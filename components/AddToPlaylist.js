@@ -28,7 +28,9 @@ export default function AddToPlaylist({ obj, playlistUid, currentFirebaseKey }) 
     const playload = { ...videoObj, playlist_uid: playlistUid };
     addToPlaylist(playload).then(({ name }) => {
       const patchPayload = { firebaseKey: currentFirebaseKey, actualKey: name };
-      updatePlaylist(patchPayload, name).then();
+      updatePlaylist(patchPayload, name).then(() => {
+        window.alert('Added to Playlist');
+      });
     });
   };
 

@@ -260,3 +260,17 @@ li:hover {
 .signInWarn{
   margin: 350px 575px;
 }
+.likesButton{
+  height: 2.5rem;
+  width: 5rem;
+  border-radius: 5rem 0 0 5rem;
+  margin-right: -1px;
+  border: none;
+}
+.dislikesButton{
+  height: 2.5rem;
+  width: 5rem;
+  border-radius: 0 5rem 5rem 0;
+  margin-left: -1px;
+  border: none;
+}

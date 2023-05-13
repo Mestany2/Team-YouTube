@@ -44,6 +44,7 @@ export default function ProfilePage() {
   }
 
   return (
+    <>
       <title>Profile</title>
       { user ? (
         <>
@@ -52,9 +53,8 @@ export default function ProfilePage() {
           </div>
           <div className="d-flex flex-column">
             <div className="mb-2 d-flex justify-content-between w-50" id="profile-btn">
-              <h4 style={{ fontWeight: '500' }}>Uploads</h4>
               <Button
-                type="button"
+                onClick={handleShowUserVid}
                 style={{
                   border: 'none',
                   backgroundColor: 'white',
@@ -62,7 +62,7 @@ export default function ProfilePage() {
                   fontSize: '23px',
                 }}
               >
-                Playlist
+                Uploads
               </Button>
               <Button
                 type="button"
@@ -74,12 +74,12 @@ export default function ProfilePage() {
                   fontSize: '23px',
                 }}
               >
-              Playlist
-           </Button>
+                Playlist
+              </Button>
               <VideoForm buttonText="Add a Video" bc="white" colorSet="black" fontSet="22px" onUpdate={getAllTheVideos} />
             </div>
             <div className="profile-vid">
-              {videos.map((video) => <UsersVideos key={video.video_id} videosObj={video} onUpdate={getAllTheVideos} formOnUpdate={getAllTheVideos} />)}
+              {displayComponent}
             </div>
           </div>
         </>
